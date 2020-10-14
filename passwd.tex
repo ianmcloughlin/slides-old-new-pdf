@@ -1,0 +1,62 @@
+\documentclass{beamer}
+
+\usepackage{iansslides}
+
+\begin{document}
+
+\section{passwd}
+
+\begin{frame}{passwd}
+  
+    \begin{center}
+      \mintinline{bash}{joeb:x:1000:1000:Joe Bloggs:/home/joeb:/bin/bash}
+    \end{center}
+    \vspace{3mm}
+    
+    \begin{description}
+      \setlength\itemsep{2mm}
+      \item[/etc/passwd] stores information about users for logins.
+      \item[Passwords] are not stored in it.
+      \item[Historically] passwords were stored in the \mintinline{python}{x} part.
+      \item[All users] have read (but not write) access to passwd.
+      \item[Shadow] passwords are now used instead.
+    \end{description}
+  
+  \end{frame}
+  
+  
+  \begin{frame}{shadow}
+    
+    \begin{center}
+      \mintinline{bash}{joeb:salt+hashedpasswordhere:17895:0:99999::::}
+    \end{center}
+    \vspace{3mm}
+    
+    \begin{description}
+      \setlength\itemsep{6mm}
+      \item[/etc/shadow] stores users hashed passwords.
+      \item[Normal users] cannot read the file, only root users.
+      \item[Not perfect] but another layer of security.
+      \item[Why] not just do this to passwd?
+    \end{description}
+  
+  \end{frame}
+  
+  
+  \begin{frame}{Hashing passwords}
+    
+    \begin{center}
+      \mintinline{bash}{$1$ie$sVzlF54.Tz0JuVRDJ3PiK.}
+    \end{center}
+    \vspace{3mm}
+  
+    \begin{description}[xxxx]
+      \setlength\itemsep{6mm}
+      \item[1] means MD5 was used. We usually now use SHA512, and 1 becomes 6.
+      \item[ie] is the salt. It makes dictionary cracking more difficult.
+      \item[Rest] is hashed password, but with some techniques like key stretching added.
+    \end{description}
+  
+  \end{frame}
+ 
+\end{document}

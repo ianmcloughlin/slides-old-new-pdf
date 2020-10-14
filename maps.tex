@@ -1,0 +1,92 @@
+\documentclass{beamer}
+
+\usepackage{iansslides}
+
+\newenvironment{novspace}{\abovedisplayskip=0pt \belowdisplayskip=0pt \abovedisplayshortskip=0pt \belowdisplayshortskip=0pt}{}
+
+\newenvironment{topdisp}{\color{gmitred}\vspace{-4mm}}{\vspace{-4mm}}
+
+\begin{document}
+
+\section{Maps}
+
+\begin{frame}{Maps}
+
+  \begin{alertblock}{Definition of map}
+    A map from a set $A$ to a set $B$ is a subset $M$ of $A \times B$ where each element of $A$ appears as the first element of a tuple in $M$ exactly once.
+  \end{alertblock}
+
+  \begin{topdisp}
+    $$A = \{a,b,c\} \qquad B = \{x,y,z\}$$
+  \end{topdisp}
+
+  \begin{minipage}[t]{0.48\linewidth}
+  \begin{exampleblock}{Maps}
+    \begin{itemize}
+      \item $\{(a,x),(b,x),(c,x)\}$
+      \item $\{(a,x),(b,y),(c,z)\}$
+    \end{itemize}
+  \end{exampleblock}
+\end{minipage}
+\begin{minipage}[t]{0.48\linewidth}
+  \begin{exampleblock}{Not maps}
+    \begin{itemize}
+      \item $\{(a,x),(a,y),(b,x),(c,x)\}$
+      \item $\{(a,x),(b,y)\}$
+    \end{itemize}
+  \end{exampleblock}
+\end{minipage}
+\end{frame}
+
+
+\begin{frame}{One-to-one map}
+  \begin{topdisp}
+    $$ A = \{1,2,3\} \quad  B = \{a,b,c,d\} \quad  M = \{ (1,a), (2,b), (3,d) \} $$
+  \end{topdisp}
+  \begin{itemize}
+    \setlength\itemsep{3mm}
+    \item In a map, $M \subseteq A \times B$, two or more distinct elements of $A$ can be mapped to the same element of $B$.
+    \item A map where this does not happen is described as \textbf{one-to-one}.
+    \item So, a map in which distinct elements of $A$ go to distinct elements of $B$ is one-to-one.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Onto map}
+  \begin{topdisp}
+    $$ A = \{1,2,3\} \quad  B = \{a,b,c,d\} \quad  M = \{ (1,a), (2,a), (3,b) \} $$
+  \end{topdisp}
+  \begin{itemize}
+    \setlength\itemsep{3mm}
+    \item In a map, not all of the elements of $B$ need to be involved in the map.
+    \item A map in which they are all involved is described as \textbf{onto}.
+    \item So, a map in which each element of $B$ is paired with an element of $A$ is onto.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Bijections}
+  \begin{topdisp}
+    $$ A = \{1,2,3\} \quad  B = \{a,b,c\} \quad  M = \{ (1,a), (2,c), (3,b) \} $$
+  \end{topdisp}
+  \begin{itemize}
+    \setlength\itemsep{3mm}
+    \item Maps can be neither one-to-one nor onto, one or the other, or both.
+    \item A \textbf{bijection} is map that is both one-to-one and onto.
+    \item Both $A$ and $B$ must have the same size in a bijection.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Partial maps}
+  \begin{topdisp}
+    $$ A = \{1,2,3\} \quad  B = \{a,b,c\} \quad  P = \{ (1,a), (3,c) \} $$
+  \end{topdisp}
+  \begin{itemize}
+    \setlength\itemsep{3mm}
+    \item A map $M$ from a set $A$ to a set $B$ must involve every element of $A$.
+    \item A partial map is like a map, but with that condition relaxed.
+    \item A partial map from a set $A$ to a set $B$ is a subset of $A \times B$ where any element of $A$ that appears as the first element in a tuple does so exactly once.
+    \item The term \emph{partial map} is a bit of a misnomer, as a partial map is not necessarily a map, but a map is a partial map.
+  \end{itemize}
+\end{frame}
+
+\end{document}

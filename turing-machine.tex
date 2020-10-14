@@ -1,0 +1,50 @@
+\documentclass{beamer}
+
+% Most of the preamble is in here.
+\usepackage{iansslides}
+
+\begin{document}
+
+% Title frame.
+\section{Turing machines}
+
+\begin{frame}{Example 1: Turing machine}
+  \begin{adjustbox}{max totalsize={0.9\textwidth}{\textheight-3\baselineskip}, keepaspectratio, center}
+    \begin{tikzpicture}
+      % Tape: left dotted lines.
+      \draw (1,0) -- (8,0);
+      \draw (1,1) -- (8,1);
+      % Tape: top and bottom solid lines.
+      \draw[densely dotted] (0.5,0) -- (1,0);
+      \draw[densely dotted] (0.5,1) -- (1,1);
+      % Tape: right dotted lines.
+      \draw[densely dotted] (8,0) -- (8.5,0);
+      \draw[densely dotted] (8,1) -- (8.5,1);
+      % Tape: leftmost solid vertical. 
+      \draw (1,0) -- (1,1);
+      % Tape: cells
+      \foreach \x [count = \i] in {0,1,0,0,1,0,0}
+      {
+        % Tape: cell right solid vertical.
+        \draw (\i+1,0) -- (\i+1,1);
+        % Tape: cell text.
+        \draw (\i+0.5,0.5) node {$\x$};
+      }
+      % State with arrow above a cell.
+      \draw[gmitred,latex-] (2.5,1.1) -- (2.5,1.5) node[draw,shape=rectangle,anchor=south] {$q_0$};
+    \end{tikzpicture}
+  \end{adjustbox}
+  \vspace{4mm}
+  \begin{table}
+    \begin{tabular}{ccccc}
+      State & Read & Write & Move & Next \\
+      \midrule
+      $q_0$ & $\square$ & $\square$ & L & $q_a$ \\
+      $q_0$ & $0$       & $1$       & R & $q_0$ \\
+      $q_0$ & $1$       & $0$       & R & $q_0$ \\
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+
+\end{document}

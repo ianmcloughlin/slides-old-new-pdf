@@ -1,0 +1,46 @@
+\documentclass{beamer}
+
+\usepackage{iansslides}
+
+\begin{document}
+
+\section{Long Multiplication Algorithm}
+
+\begin{frame}[fragile]{Long multiplication}
+  \begin{columns}[t]
+    \column{0.5\textwidth}
+      \begin{table}
+        \centering
+        \begin{tabular}{rccccccc}
+          \toprule
+          \only<4-5>{\color{gmitblue}$^3$}\only<6-7>{\color{gmitblue}$^1$} &  &   &   & {\color<9-10>{gmitred}1} & {\color<7-8>{gmitred}0} & {\color<5-6>{gmitred}2} & {\color<3-4,12>{gmitred}4} \\
+          $\times$ &   &   &   &   & 1 & {\color<11-12>{gmitblue}2} & {\color<2-10>{gmitblue}8} \\
+          \midrule
+                   &   &   &   & {\color<10>{gmitblue}8} & {\color<8>{gmitblue}1} & {\color<6>{gmitblue}9} & {\color<4>{gmitblue}2} \\
+                   &   &   & 2 & 0 & 4 & {\color<12>{gmitblue}8} & {\color<11>{gmitblue}0} \\
+          {\color<13>{gmitblue}$+$}      &   & 1 & 0 & 2 & 4 & 0 & 0 \\
+          \midrule
+                   &   & {\color<13>{gmitblue}1} & {\color<13>{gmitblue}3} & {\color<13>{gmitblue}1} & {\color<13>{gmitblue}0} & {\color<13>{gmitblue}7} & {\color<13>{gmitblue}2} \\
+          \bottomrule
+        \end{tabular}
+      \end{table}
+    
+    \column{0.5\textwidth}
+    {\color{gmitred} \textbf{Algorithm}}
+      \begin{minted}{python}
+right align
+for each bottom digit:
+  new line, append zeros
+  for each top digit:
+    multiply
+    if carried digit:
+      add
+    if greater than 9:
+      carry tens digit
+    print units digit
+add
+      \end{minted}
+  \end{columns}
+\end{frame}
+
+\end{document}

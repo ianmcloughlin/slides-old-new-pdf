@@ -1,0 +1,148 @@
+\documentclass{beamer}
+
+\usepackage{iansslides}
+
+\begin{document}
+
+
+\section{Sessions}
+
+\begin{frame}{Sessions}
+  \begin{description}
+    \item[HTTP] treats each request--response individually.
+		\item[How] can we let users identify themselves to the server as the same user who made a previous request?
+		\item[Needed] to enable such things as shopping carts.
+		\item[Sessions] provide a mechanism for this.
+		\item[Servers] can provide a unique key in a response, which can be used in the next request.
+		\item[Amazon] were one of the first companies to design this functionality.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{Cookies}
+  \begin{description}
+    \item[Set-Cookie] is a header that a server can send in a response.
+		\item[name=value;] is typcially what Set-Cookie is set to.
+		\item[Browsers] store the information on the client side.
+		\item[Cookie] is a header the client can send in a request.
+		\item[Usually] it is set to something a server has sent before.
+  \end{description}
+	\citeurl{developer.mozilla.org/en-US/docs/Web/HTTP/Cookies}
+\end{frame}
+
+
+\begin{frame}[fragile]{Set-Cookie example}
+  \begin{minted}{http}
+HTTP/1.0 200 OK
+Content-type: text/html
+Set-Cookie: yummy_cookie=choco
+Set-Cookie: tasty_cookie=strawberry
+
+<p>Hello, world!</p>
+  \end{minted}
+	\citeurl{developer.mozilla.org/en-US/docs/Web/HTTP/Cookies}
+\end{frame}
+
+
+\begin{frame}[fragile]{Cookie example}
+  \begin{minted}{http}
+GET /sample_page.html HTTP/1.1
+Host: www.example.org
+Cookie: yummy_cookie=choco; tasty_cookie=strawberry
+  \end{minted}
+	\citeurl{developer.mozilla.org/en-US/docs/Web/HTTP/Cookies}
+\end{frame}
+
+
+\begin{frame}[fragile]{Cookie Lifetimes}
+  \begin{description}
+    \item[Cookies] usually don't last forever.
+		\item[Session] cookies typically expire when a browser window is closed.
+		\item[Sometimes] browsers will restore session cookies, however, as a feature.
+		\item[Persistent] cookies aren't quite permanent -- the server sets an expiration date and time.
+  \end{description}
+	\hr
+  \begin{minted}{http}
+Set-Cookie: id=a3; Expires=Wed, 21 Oct 2015 07:28:00 GMT;
+  \end{minted}
+	\citeurl{developer.mozilla.org/en-US/docs/Web/HTTP/Cookies}
+\end{frame}
+
+
+\begin{frame}[fragile]{Using Cookies in JavaScript}
+  \begin{description}
+    \item[document.cookie] is used to get and set cookies in JavaScript.
+  \end{description}
+	\hr
+  \begin{minted}{javascript}
+document.cookie = "yummy_cookie=choco"; 
+document.cookie = "tasty_cookie=strawberry"; 
+console.log(document.cookie); 
+// logs "yummy_cookie=choco; tasty_cookie=strawberry"
+  \end{minted}
+	\citeurl{developer.mozilla.org/en-US/docs/Web/API/Document/cookie}
+\end{frame}
+
+
+\begin{frame}[fragile]{Cookie security}
+  \begin{description}
+    \item[User indentification] is often done through the use of Cookies.
+		\item[Servers] give a user a unique cookie to be sent with each request.
+		\item[Stealing] cookies is a good way to hijack a user session.
+		\item[HttpOnly] can be tacked onto cookies so that they are not available in JavaScript.
+		\item[Secure] will ensure cookies are onl sent over secure connections (HTTPS).
+  \end{description}
+	\hr
+  \begin{minted}{http}
+Set-Cookie: id=a3f; Expires=...; Secure; HttpOnly
+  \end{minted}
+	\citeurl{developer.mozilla.org/en-US/docs/Web/API/Document/cookie}
+\end{frame}
+
+
+\begin{frame}{Data in web applications}
+  \begin{description}
+    \item[Databases] are usually used to store user data on the server side.
+		\item[Interactive] web applications can trigger lots of HTTP requests in short periods of time.
+		\item[Traditional] databases will (often) write to the hard disk.
+		\item[Hard-disk] access is slow.
+		\item[RAM] is fast.
+		\item[In-memory] databases can make the user experience better.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{Data in web applications}
+  \begin{description}
+    \item[Databases] are usually used to store user data on the server side.
+		\item[Interactive] web applications can trigger lots of HTTP requests in short periods of time.
+		\item[Traditional] databases will (often) write to the hard disk.
+		\item[Hard-disks] are slow.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{In-Memory Data Stores}
+  \begin{description}
+    \item[In-Memory] databases can make the user experience better.
+		\item[RAM] is much faster than hard-disks.
+		\item[Good] for data that is not hanging around for long, and can easily be discarded.
+		\item[Identification] credentials are a good example.
+		\item[Worst-case] scenario, the user is asked to login again. 
+		\item[Not] great for large chunks of data that needs long-term persistence, like photos.
+  \end{description}
+\end{frame}
+		
+
+\begin{frame}{Redis}
+	  \begin{description}
+    \item[Redis] is an in-memory data structure store.
+		\item[Supports] data structures such as strings, hashes, lists, sets, sorted sets, etc.
+		\item[Persistence] is supported, just not emphasised.
+		\item[A lot] a like your usual database.
+		\item[Difficult] to appreciate until you have a high-traffic web application.
+  \end{description}
+	\citeurl{http://redis.io/topics/introduction}
+\end{frame}
+
+\end{document}

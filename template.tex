@@ -1,0 +1,64 @@
+\documentclass{beamer}
+
+% Most of the preamble is in here.
+\usepackage{iansslides}
+
+\begin{document}
+
+% Title frame.
+\section{Template slides}
+
+% A frame with Tikz.
+\begin{frame}{Visualisation}
+  \begin{adjustbox}{max totalsize={0.9\textwidth}{\textheight-3\baselineskip}, keepaspectratio, center}
+    \begin{tikzpicture}
+      \draw (0,0) coordinate (origin);
+      \draw (5,5) coordinate (center);
+      \draw (origin) -- +(1,1);
+      \draw (2,2) -- (4,4); 
+      \draw[red] (45:6) -- (45:7);
+      \draw[gray] (0,0) grid (10,10);
+      \draw (origin) .. controls (10,4) and (10,6) .. (0,10);
+      \draw (center) node[draw,shape=circle] (Hello) {$H^el^lo$};
+      \foreach \i in {0,1,2,3,4}
+      {
+        \path (center) -- +(90+\i*360/5:4) coordinate  (P\i);
+        \path[draw,fill=gmitblue] (P\i) circle (1);
+      }
+      \begin{scope}[shift={(1,5)}]
+        \draw[smooth,domain=0:6.5] plot function{sin(2*x)*exp(-x/4)};
+      \end{scope}
+    \end{tikzpicture}
+  \end{adjustbox}
+\end{frame}
+
+% A frame with minted.
+\begin{frame}[fragile]{Code}
+  \begin{minted}{python}
+def f(x, m):
+  return "Hello, function!"
+  \end{minted}
+\end{frame}
+
+
+\begin{frame}
+  \vspace{8mm}
+  \centering
+  \begin{adjustbox}{width=0.8\columnwidth, keepaspectratio}
+    \begin{tikzpicture}
+      \tikzset{iansedge/.style={out=90,in=205,-latex,dashed,gmitblue}}
+      \tikzset{ianslabel/.style={gmitblue, minimum size=0.5cm}}      
+      % Code.
+      \node[anchor=west] at (1.0, 1.0) (def) {\mintinline{python}{def f(x, m):}};
+      \node[anchor=west] at (1.5, 0.3) (ret) {\mintinline{python}{return m[0] * x + m[1];}};
+      % Input label.
+      \node[anchor=west,ianslabel,rotate=45] at (3.4,2.1) (inputlabel) {\tiny Input};
+      \draw (2.45,1.2) edge[iansedge] (inputlabel);
+      % Model label.
+      \node[anchor=west,ianslabel,rotate=45] at (4.0,2.0) (modellabel) {\tiny Model};
+      \draw (3.05,1.2) edge[iansedge] (modellabel);
+    \end{tikzpicture}
+  \end{adjustbox}
+\end{frame}
+
+\end{document}

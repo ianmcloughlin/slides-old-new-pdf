@@ -1,0 +1,75 @@
+\documentclass{beamer}
+
+% Most of the preamble is in here.
+\usepackage{iansslides}
+
+\begin{document}
+
+
+\section{The Square Root of 2}
+
+
+\begin{frame}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \draw[draw=gmitblue] (0,0) --node [midway, left, black] {$1$} (0,3) -- (3,3) -- (3,0) --node [midway, below, black] {$1$} (0,0);
+        \draw[gmitred] (3,0) -- (0,3) node [midway, above right, black] {$\sqrt{2}$};
+      \end{tikzpicture}
+    \end{column}
+    {\color{gmitgrey!30}\vrule{}} \hspace{0.1\textwidth}
+    \begin{column}{0.5\textwidth}
+      $\sqrt{2} \times \sqrt{2} = 2$ \\[16mm]
+      $d^2 = l^2 + w^2$ \\[4mm]
+      $d^2 = 1^2 + 1^2$ \\[4mm]
+      $d = \sqrt{2}$ \\[8mm]
+    \end{column}
+  \end{columns}
+\end{frame}
+
+ 
+\begin{frame}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \color{gmitblue} \fontsize{30}{10}
+      \[\frac{a}{b}\]
+    \end{column}
+    {\color{gmitgrey!30}\vrule{}} \hspace{0.1\textwidth}
+    \begin{column}{0.5\textwidth}
+      $\sqrt{2} = \dfrac{a}{b}$ \\[8mm]
+      $\Rightarrow 2 = \dfrac{a^2}{b^2}$ \\[8mm]
+      $\Rightarrow 2b^2 = a^2$ \\[8mm]
+      $\Rightarrow 2 \mid a^2$ \\[8mm]
+      $\Rightarrow 2 \mid a$
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \color{gmitblue} \fontsize{30}{10}
+      \[2 \mid a\]
+    \end{column}
+    {\color{gmitgrey!30}\vrule{}} \hspace{0.1\textwidth}
+    \begin{column}{0.5\textwidth}
+      $2 \mid a$ \\[8mm]
+      $\Rightarrow 4 \mid a^2$ \\[8mm]
+      $\Rightarrow 4 \mid 2b^2$ \\[8mm]
+      $\Rightarrow 2 \mid b^2$ \\[8mm]
+      $\Rightarrow 2 \mid b$
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[standout]
+  \begin{quote}
+    A number is rational if and only if its decimal expansion becomes periodic.
+  \end{quote}
+\end{frame}
+
+
+\end{document}

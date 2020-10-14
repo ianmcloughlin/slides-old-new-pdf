@@ -1,0 +1,458 @@
+\documentclass{beamer}
+
+\usepackage{iansslides}
+
+\begin{document}
+  
+\section{Finite Automata}
+
+\begin{frame}[fragile]{Finite Automaton: Example 1}
+    \begin{center}
+      \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=, >=latex]
+        \node[state, initial]   (q_0)                {\( q_0 \)}; 
+        \node[state, accepting] (q_1) [right of=q_0] {\( q_1 \)};
+        \node[state]            (q_2) [right of=q_1] {\( q_2 \)}; 
+        \path[->] 
+          (q_0) edge [loop above] node {\( 0 \)}   ()
+                edge []           node {\( 1 \)}   (q_1)
+          (q_1) edge [bend left]  node {\( 0 \)}   (q_2)
+                edge [loop above] node {\( 1 \)}   ()
+          (q_2) edge [bend left]  node {\( 0,1 \)} (q_1);
+      \end{tikzpicture}
+    \end{center}
+    \pause
+    \begin{center}
+      Try running the automaton on the following strings. \\ 
+      \( 1101 \), \( 1 \), \( 01 \), \( 11 \), \( 0101010101 \), \( 100 \), \( 0100 \), \\
+      \( 110000 \), \( 0101000000 \), \( 0 \), \( 10 \), \( 101000 \)
+    \end{center}
+    \citeeg{Sipser page 34}
+  \end{frame}
+  
+  
+  \begin{frame}[fragile]{Finite Automaton: Example 2}
+    \begin{center}
+      \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=, >=latex]
+        \node[state, initial]   (b_0)                {\( b_0 \)}; 
+        \node[state]            (b_1) [right of=b_0] {\( b_1 \)};
+        \node[state, accepting] (b_2) [right of=b_1] {\( b_2 \)}; 
+        \path[->] 
+          (b_0) edge [loop below] node {\( a \)}   ()
+                edge []           node {\( b \)}   (b_1)
+          (b_1) edge [loop below] node {\( a \)}   ()
+                edge []           node {\( b \)}   (b_2)
+          (b_2) edge [loop below] node {\( a,b \)} ();
+      \end{tikzpicture}
+    \end{center}
+    \pause
+    \begin{center}
+      Try running the automaton on the following strings. \\
+      \( aaaa \), \( ababa \), \( bababb \), \( abaa \) \\
+      \pause
+      \vspace{8mm}
+      Describe the strings that the automaton recognises.
+    \end{center}
+    \citeeg{Sipser chapter 1 4(a) -- Part 2}
+  \end{frame}
+  
+  \begin{frame}[fragile]{Finite Automaton: Example 3}
+    \begin{center}
+      \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=, >=latex]
+        \node[state, initial]   (a_0)                {\( a_0 \)}; 
+        \node[state]            (a_1) [right of=a_0] {\( a_1 \)};
+        \node[state]            (a_2) [right of=a_1] {\( a_2 \)}; 
+        \node[state, accepting] (a_3) [right of=a_2] {\( a_3 \)};
+        \path[->] 
+          (a_0) edge [loop below] node {\( b \)}   ()
+                edge []           node {\( a \)}   (a_1)
+          (a_1) edge [loop below] node {\( b \)}   ()
+                edge []           node {\( a \)}   (a_2)
+          (a_2) edge [loop below] node {\( b \)}   ()
+                edge []           node {\( a \)}   (a_3)
+          (a_3) edge [loop below] node {\( a,b \)} ();
+      \end{tikzpicture}
+    \end{center}
+    \begin{center}
+      \pause
+      Try running the automaton on the following strings. \\
+      \( aaaa \), \( ababa \), \( bababb \), \( abaa \) \\
+      \vspace{8mm}
+      \pause
+      Describe the strings that the automaton recognises.
+    \end{center}
+    \citeeg{Sipser chapter 1 4(a) -- Part 1}
+  \end{frame}
+  
+  \begin{frame}[fragile]{Finite Automaton: Concepts}
+    \begin{center}
+      \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=, >=latex]
+        \node[state, initial, onslide={<2,3>{gmitblue}}]   (q_0)                {\( q_0 \)}; 
+        \node[state, accepting, onslide={<2,4>{gmitblue}}] (q_1) [right of=q_0] {\( q_1 \)};
+        \node[state, onslide={<2>{gmitblue}}]              (q_2) [right of=q_1] {\( q_2 \)}; 
+        \path[->] 
+          (q_0) edge [loop above, onslide={<6>{gmitblue}}] node {\only<5>{\textcolor{gmitblue}{\( 0 \)}} \only<1-4,6>{\textcolor{black}{\( 0 \)}}}   ()
+                edge [,           onslide={<6>{gmitblue}}] node {\only<5>{\textcolor{gmitblue}{\( 1 \)}} \only<1-4,6>{\textcolor{black}{\( 1 \)}}}   (q_1)
+          (q_1) edge [bend left,  onslide={<6>{gmitblue}}] node {\only<5>{\textcolor{gmitblue}{\( 0 \)}} \only<1-4,6>{\textcolor{black}{\( 0 \)}}}   (q_2)
+                edge [loop above, onslide={<6>{gmitblue}}] node {\only<5>{\textcolor{gmitblue}{\( 1 \)}} \only<1-4,6>{\textcolor{black}{\( 1 \)}}}   ()
+          (q_2) edge [bend left,  onslide={<6>{gmitblue}}] node {\only<5>{\textcolor{gmitblue}{\( 0,1 \)}} \only<1-4,6>{\textcolor{black}{\( 0,1 \)}}} (q_1);
+      \end{tikzpicture}
+    \end{center}
+  
+    \begin{center}
+      \only<1>{\textcolor{gmitblue}{What are the essential concepts?}}
+      \only<2>{\textcolor{gmitblue}{Set of states: \( Q = \{ q_0, q_1, q_2 \} \)}}
+      \only<3>{\textcolor{gmitblue}{Initial state: \( q_0 \in Q \)}}
+      \only<4>{\textcolor{gmitblue}{Set of final states: \( F = \{ q_1 \} \subseteq Q \)}}
+      \only<5>{\textcolor{gmitblue}{Alphabet: \( \Sigma = \{ 0, 1 \} \)}}
+      \only<6>{\textcolor{gmitblue}{Transition function: \( \delta = \{ ((q_0, 0), q_0), ((q_0, 1), q_1), ((q_1,0), q_2), \ldots \} \)}}
+    \end{center}
+  \end{frame}
+  
+  
+  \begin{frame}[fragile]{Deterministic Finite Automaton (DFA) definition}
+    A DFA is a 5-tuple \( (Q,\Sigma,\delta,q_0,F) \) where
+    \begin{description}
+      \item[\( Q \)] is a finite set of \emph{states},
+      \item[\( \Sigma \)] is a finite set called the \emph{alphabet},
+      \item[\( \delta \)] is the \emph{transition function} (\( Q \times \Sigma \rightarrow Q \)),
+      \item[\( q_0 \)] is the \emph{start state} (\( \in Q \)), and
+      \item[\( F \)] is the set of \emph{accept states} (\( \subseteq Q \)). 
+    \end{description}
+    \citeeg{Sipser page 35}
+  \end{frame}
+  
+  
+  \begin{frame}[fragile]{Example 1 definition}
+    \begin{description}
+      \item[\( Q = \)] \( \{ q_0, q_1, q_2\} \)
+      \item[\( \Sigma = \)] \( \{ 0, 1 \} \)
+      \item[\( \delta = \)] \( \{ ((q_0,0),q_0), ((q_0,1),q_1) \), \( ((q_1,0),q_2), ((q_1,1),q_1) \), \( ((q_2,0),q_1), ((q_2,1),q_1) \} \)
+      \item[\( q_0 = \)] \( q_0 \)
+      \item[\( F = \)] \( \{ q_1 \} \)
+    \end{description}
+    \citeeg{Sipser page 36}
+  \end{frame}
+  
+  \begin{frame}[fragile]{Example 2 definition}
+    \begin{description}
+      \item[\( Q = \)] \( \{ b_0, b_1, b_2\} \)
+      \item[\( \Sigma = \)] \( \{ a, b \} \)
+      \item[\( \delta = \)] \( \{ ((b_0,a),b_0), ((b_0,b),b_1) \), \( ((b_1,a),b_1), ((b_1,b),b_2) \), \( ((b_2,a),b_2), ((b_2,b),b_2) \} \)
+      \item[\( q_0 = \)] \( b_0 \)
+      \item[\( F = \)] \( \{ b_2 \} \)
+    \end{description}
+    \citeeg{Sipser chapter 1 4(a) -- Part 1}
+  \end{frame}
+  
+  \begin{frame}[fragile]{Example 3 definition}
+    \begin{description}
+      \item[\( Q = \)] \( \{ a_0, a_1, a_2, a_3 \} \)
+      \item[\( \Sigma = \)] \( \{ a, b \} \)
+      \item[\( \delta = \)] \( \{ ((a_0,a),a_1), ((a_0,b),a_0) \), \( ((a_1,a),a_2), ((a_1,b),a_1) \), \( ((a_2,a),a_3), ((a_2,b),a_2) \} \), \( ((a_3,a),a_3), ((a_3,b),a_3) \} \)
+      \item[\( q_0 = \)] \( a_0 \)
+      \item[\( F = \)] \( \{ a_3 \} \)
+    \end{description}
+    \citeeg{Sipser chapter 1 4(a) -- Part 1}
+  \end{frame}
+  
+  
+  
+  \begin{frame}{Non-determinism}
+    \begin{description}
+      \item[DFAs] always have exactly one state to transition to when in any given state and reading any given symbol.
+      \vspace{4mm}
+      \item[Non-deterministic] finite automata can have any number of arrows for each state and symbol.
+      \vspace{4mm}
+      \item[The empty string \( \epsilon \)] is also used to label arrows that are followed without reading a character from the input, while also remaining in the original state.
+      \vspace{4mm} 
+      \item[Non-determinism] can simplify automata but it can be shown that NFAs and DFAs recognise the same set of languages.
+    \end{description}
+  \end{frame}
+  
+  
+  \begin{frame}[fragile]{NFA example}
+    \begin{center}
+      \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=, >=latex]
+        \node[state, initial]   (q_1)                {\( q_1 \)}; 
+        \node[state]            (q_2) [right of=q_1] {\( q_2 \)};
+        \node[state]            (q_3) [right of=q_2] {\( q_3 \)}; 
+        \node[state, accepting] (q_4) [right of=q_3] {\( q_4 \)};
+        \path[->] 
+          (q_1) edge [loop above] node {\( 0,1 \)}        ()
+                edge []           node {\( 1 \)}          (q_2)
+          (q_2) edge []           node {\( 0,\epsilon \)} (q_3)
+          (q_3) edge []           node {\( 1 \)}          (q_4)
+          (q_4) edge [loop above] node {\( 0,1 \)}        ();
+      \end{tikzpicture}
+    \end{center}
+    \begin{center}
+      Try running the following strings on the automaton. \\
+      \( 111101 \), \( 00001010 \), \( 1110 \), \( \epsilon \) \\
+      \pause
+      
+      \vspace{2mm}
+      Describe in words the strings that the automaton recognises.
+      \pause
+      \vspace{1mm}
+      (Answer: all strings that contain either 11 or 101.)
+    \end{center}
+    \citeeg{Sipser page 48}
+  \end{frame}
+  
+  \begin{frame}[fragile]{NFA example}
+    Example: \( 010110 \) on the previous NFA.
+    \vspace{2mm}
+    \begin{adjustbox}{max totalsize={.9\textwidth}{.7\textheight},center}
+      \begin{tikzpicture}[auto, on grid, node distance=20mm, initial text=, >=latex]
+        \node[state, initial]   (q_1a)                 {\( q_1 \)}; 
+  
+        \node[state]            (q_1b) [right of=q_1a] {\( q_1 \)};
+        
+        \node[state]            (q_2a) [right of=q_1b] {\( q_2 \)};
+        \node[state]            (q_1c) [above of=q_2a] {\( q_1 \)};
+        \node[state]            (q_3a) [below of=q_2a] {\( q_3 \)};
+        
+        \node[state]            (q_1d) [right of=q_1c] {\( q_1 \)};
+        \node[state]            (q_3b) [right of=q_2a] {\( q_3 \)};
+        
+        \node[state]            (q_2b) [right of=q_1d] {\( q_2 \)};
+        \node[state]            (q_1e) [above of=q_2b] {\( q_1 \)};
+        \node[state]            (q_3c) [below of=q_2b] {\( q_3 \)};
+        \node[state]            (q_4a) [below of=q_3c] {\( q_4 \)};
+        
+        \node[state]            (q_2c) [right of=q_1e] {\( q_2 \)};
+        \node[state]            (q_1f) [above of=q_2c] {\( q_1 \)};
+        \node[state]            (q_3d) [below of=q_2c] {\( q_3 \)};
+        \node[state]            (q_4b) [below of=q_3d] {\( q_4 \)};
+        \node[state]            (q_4c) [below of=q_4b] {\( q_4 \)};
+        
+        
+        \node[state]            (q_1g) [right of=q_1f] {\( q_1 \)};
+        \node[state]            (q_3e) [right of=q_2c] {\( q_3 \)};
+        \node[state, accepting, gmitblue] (q_4d) [right of=q_4b] {\( q_4 \)};
+        \node[state, accepting, gmitblue] (q_4e) [right of=q_4c] {\( q_4 \)};
+  
+        \path[->] 
+          (q_1a) edge [gmitblue]       node {$0$}          (q_1b)
+  
+          (q_1b) edge [gmitblue]       node {$1$}          (q_1c)
+                 edge [gmitblue]       node {$1$}          (q_2a)
+                 edge [left]           node {$1 \epsilon$} (q_3a)
+  
+          (q_1c) edge [gmitblue]       node {$0$}          (q_1d)
+          (q_2a) edge [gmitblue]       node {$0$}          (q_3b)
+  
+  
+          (q_1d) edge []               node {$1$}          (q_1e)
+                 edge []               node {$1$}          (q_2b)
+                 edge [gmitblue, left] node {$1 \epsilon$} (q_3c)
+          (q_3b) edge [gmitblue]       node {$1$}          (q_4a)
+          
+          (q_1e) edge []               node {$1$}          (q_1f)
+                 edge []               node {$1$}          (q_2c)
+                 edge [left]           node {$1 \epsilon$} (q_3d)
+          (q_3c) edge [gmitblue]       node {$1$}          (q_4b)
+          (q_4a) edge [gmitblue]       node {$1$}          (q_4c)
+  
+          (q_1f) edge []               node {$0$}          (q_1g)
+          (q_2c) edge []               node {$0$}          (q_3e)
+          (q_4b) edge [gmitblue]       node {$0$}          (q_4d)
+          (q_4c) edge [gmitblue]       node {$0$}          (q_4e);
+      \end{tikzpicture}
+    \end{adjustbox}
+    \citeeg{Sipser page 49}
+  \end{frame}
+  
+  
+  \begin{frame}[fragile]{NFA example}
+    \begin{center}
+      Construct an NFA with alphabet \( \{0, 1\} \) to recognise the language \( \{ w| w \textrm{ ends with } 00\} \). Try to do it with only three states.
+    \end{center}
+    \pause
+    \vspace{8mm}
+    \begin{center}
+      \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=]
+        \node[state, initial]   (s_0)                {\( s_0 \)};
+        \node[state]            (s_1) [right of=s_0] {\( s_1 \)};
+        \node[state, accepting] (s_2) [right of=s_1] {\( s_2 \)};
+        \path[->]
+          (s_0) edge [loop below] node {0,1} (s_0)
+                edge []           node {0}   (s_1)
+          (s_1) edge []           node {0}   (s_2);
+      \end{tikzpicture}
+    \end{center}
+    \citeeg{Sipser Q 1.~7(a)}
+  \end{frame}
+  
+  
+  \begin{frame}[fragile]{Non-deterministic Finite Automaton (NFA) definition}
+    An NFA is a 5-tuple \( (Q,\Sigma,\delta,q_0,F) \) where
+    \begin{description}
+      \item[\( Q \)] is a finite set of \emph{states},
+      \item[\( \Sigma \)] is a finite set called the \emph{alphabet},
+      \item[\( \delta \)] is the \emph{transition function} (\( Q \times \Sigma_{\epsilon} \rightarrow \mathcal{P}(Q) \)),
+      \item[\( q_0 \)] is the \emph{start state} (\( \in Q \)), and
+      \item[\( F \)] is the set of \emph{accept states} (\( \subseteq Q \)). 
+    \end{description}
+    \vspace{5mm}
+    By \( \Sigma_{\epsilon} \) we mean \( \Sigma \cup \{ \epsilon \} \).
+    e.g. When \( \Sigma = \{0,1\} \), \( \Sigma_{\epsilon} = \{\epsilon,0,1\}. \)
+    \citeeg{Sipser page 35}
+  \end{frame}
+  
+  \begin{frame}[fragile]{Powerset example}
+  
+    Take any set, say \( A = \{0,1,2\} \).
+    Its powerset is the set of all its subsets, and is denoted \( \mathcal{P}(A) \).
+  
+  
+    \[
+    \mathcal{P}(A) = \Big\{ \ 
+                        \{ \} \  , \  \{ 0 \} \  , \  \{ 1 \} \  ,\   \{ 2 \} \  , \ 
+                        \{ 0,1 \} \  , \  \{ 0,2 \} \  , \  \{ 1,2 \} \  , \ 
+                        \{ 0,1,2 \} \ 
+                      \Big\}
+    \]
+  
+  \end{frame}
+  
+  \vspace{2mm}
+  
+  \begin{frame}[fragile]{Strings of length $p$}
+    \begin{description}
+      \setlength\itemsep{3mm}
+      \item[Finite] means that the number of states is finite.
+      \item[Let $p$] be the number of states in an automaton.
+      \item[Every] string of length at least $p$ must visit one state twice.
+    \end{description}
+  \vspace{4mm}
+  
+      \vspace{5mm}
+    Try the strings $000$, $001$, $010$, etc on the following automaton.
+    \begin{center}
+      \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=, >=latex]
+        \node[state, initial]   (q_0)                {\( q_0 \)}; 
+        \node[state, accepting] (q_1) [right of=q_0] {\( q_1 \)};
+        \node[state]            (q_2) [right of=q_1] {\( q_2 \)}; 
+        \path[->] 
+          (q_0) edge [loop above] node {\( 0 \)}   ()
+                edge []           node {\( 1 \)}   (q_1)
+          (q_1) edge [bend left]  node {\( 0 \)}   (q_2)
+                edge [loop above] node {\( 1 \)}   ()
+          (q_2) edge [bend left]  node {\( 0,1 \)} (q_1);
+      \end{tikzpicture}
+    \end{center}
+  
+  \end{frame}
+  
+  \begin{frame}[fragile]{Example of looping a string}
+  
+    Consider the string 110001 on the following automaton.
+  
+    \begin{center}
+      \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=, >=latex]
+        \node[state, initial]   (q_0)                {\( q_0 \)}; 
+        \node[state, accepting] (q_1) [right of=q_0] {\( q_1 \)};
+        \node[state]            (q_2) [right of=q_1] {\( q_2 \)}; 
+        \path[->] 
+          (q_0) edge [loop above] node {\( 0 \)}   ()
+                edge []           node {\( 1 \)}   (q_1)
+          (q_1) edge [bend left]  node {\( 0 \)}   (q_2)
+                edge [loop above] node {\( 1 \)}   ()
+          (q_2) edge [bend left]  node {\( 0,1 \)} (q_1);
+      \end{tikzpicture}
+    \end{center}
+  
+    \vspace{2mm}
+  
+    \begin{table}
+    \begin{tabular}{|cc|cc|cc|cc|cc|cc|}
+      \hline
+      $1$ & $1$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $1$ \\
+      \hline
+      \multicolumn{2}{|c|}{$x$} &
+      \multicolumn{2}{c|}{$y$} &
+      \multicolumn{2}{c|}{$y$} &
+      \multicolumn{2}{c|}{$y$} &
+      \multicolumn{2}{c|}{$y$} &
+      \multicolumn{2}{c|}{$z$} \\
+      \hline
+    \end{tabular}
+  \end{table}
+  
+  \end{frame}
+  
+  
+  \begin{frame}{Pumping lemma}
+    \begin{theorem}
+      \vspace{2mm}
+      Let $A$ be a regular language.
+      There is a positive integer $p$ such that every string $s$ of length at least $p$ in $A$ may be broken into three substrings \( s = xyz \) where:
+  
+      \begin{itemize}
+        \item \( xy^iz \) is in $A$ for all non-negative integers $i$.
+        \item The length of $y$ is greater than zero ($|y| > 0$).
+        \item The length of $xy$ is less than or equal to $p$ ($|xy| \leq p$).
+      \end{itemize}
+      \vspace{2mm}
+    \end{theorem}
+  
+  \end{frame}
+  
+  \begin{frame}[fragile]{Pumping lemma example}
+  
+    Consider the string 110001 on the following automaton.
+  
+    \begin{center}
+      \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=, >=latex]
+        \node[state, initial]   (q_0)                {\( q_0 \)}; 
+        \node[state, accepting] (q_1) [right of=q_0] {\( q_1 \)};
+        \node[state]            (q_2) [right of=q_1] {\( q_2 \)}; 
+        \path[->] 
+          (q_0) edge [loop above] node {\( 0 \)}   ()
+                edge []           node {\( 1 \)}   (q_1)
+          (q_1) edge [bend left]  node {\( 0 \)}   (q_2)
+                edge [loop above] node {\( 1 \)}   ()
+          (q_2) edge [bend left]  node {\( 0,1 \)} (q_1);
+      \end{tikzpicture}
+    \end{center}
+  
+    Note that $|xy|$ must be less than $p$.
+  
+    \vspace{2mm}
+    \pause
+    \begin{table}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|cccc|}
+      \hline
+      $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $1$ & $0$ & $0$ & $0$ & $1$ \\
+      \hline
+      $x$ & $y$ & $y$ & $y$ & $y$ & $y$ & $y$ & $y$ & \multicolumn{4}{c|}{$z$} \\
+      \hline
+    \end{tabular}
+  \end{table}
+  
+  \end{frame}
+  
+  
+  \begin{frame}{No automaton recognises $\{ 0^i 1^i \}$}
+    \textcolor{gmitblue}{Is there a finite automaton that recognises $\{ 0^i 1^i \mid i \in \mathbb{N} \}$?}
+    
+    \vspace{4mm}
+  
+    If so, it has a finite number of states --- let that number be $p$.
+  
+    \vspace{2mm}
+  
+    The string $0^p1^p$ ($p$ 0's followed by $p$ 1's) must be accepted by the automaton.
+  
+    \vspace{2mm}
+  
+    By the pumping lemma, it can be broken into $xyz$ where $xy^iz$ is also accepted for all $i \in \mathbb{N}$, $y$ is of length greater than zero and $xy$ is no longer than $p$.
+  
+    \vspace{2mm}
+  
+    So, $|xy| \leq p$ and $|y| > 0$, meaning $y$ must be a string of 0's. However, then $xyyz$ contains more 0's than 1's --- a contradiction.
+  
+    
+  \end{frame}
+\end{document}

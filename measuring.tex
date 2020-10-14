@@ -1,0 +1,85 @@
+\documentclass{beamer}
+
+% Most of the preamble is in here.
+\usepackage{iansslides}
+
+\begin{document}
+
+
+\section{The Measuring Numbers}
+
+
+\begin{frame}
+  \begin{adjustbox}{max totalsize={0.9\textwidth}{\textheight-3\baselineskip}, keepaspectratio, center}
+    \begin{tikzpicture}
+      \draw[color=gmitred,dotted,-latex] (0,0) arc (180:0:1);
+      \draw[latex-latex, color=gmitgrey] (-1.5,0) -- (3.5,0);
+      \foreach \x in {-1,0,1,2} \draw[shift={(\x,0)}, color=gmitblue!80] (0pt,0pt) -- (0pt,-5pt) node[below] {\tiny $\x$};
+      \draw[shift={(3.14,0)}, color=gmitblue!80] (0pt,0pt) -- (0pt,-5pt) node[below] {\tiny $\pi$};
+      \draw[shift={(1.41,0)}, color=gmitblue!80] (0pt,0pt) -- (0pt,-5pt) node[below] {\tiny $\sqrt{2}$};
+      \draw[very thick, color=gmitred] (0,0) -- (1,0);
+    \end{tikzpicture}
+  \end{adjustbox}
+\end{frame}
+
+
+\begin{frame}[standout]
+  \begin{quote}
+    What is the distance between 0 and 1? \\[8mm]
+    What number comes directly after 0? \\[8mm]
+    What number comes directly before 1? \\[8mm]
+  \end{quote}
+\end{frame}
+
+
+\begin{frame}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \color{gmitblue} \fontsize{60}{70}
+      \[0.\bar{9}\]
+    \end{column}
+    {\color{gmitgrey!30}\vrule{}} \hspace{0.01\textwidth}
+    \begin{column}{0.5\textwidth}
+      \begin{align*}
+        &            &  1& &\times && 0.999\ldots & &= & &0&.999\ldots\\[4mm]
+        & \Rightarrow& 10& &\times && 0.999\ldots & &= & &9&.999\ldots\\[4mm]
+        & \Rightarrow&  9& &\times && 0.999\ldots & &= & &9&.000\ldots\\[4mm]
+        & \Rightarrow&  1& &\times && 0.999\ldots & &= & &1&.000\ldots\\[4mm]
+        & \Rightarrow&   & &       && 0.999\ldots & &= & &1& \\[4mm]
+      \end{align*}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      \color{gmitblue} \fontsize{60}{10}
+      \[\mathbb{R}\]
+    \end{column}
+    {\color{gmitgrey!30}\vrule{}} \hspace{0.1\textwidth}
+    \begin{column}{0.5\textwidth}
+      \begin{align*}
+        &\mathbb{N} &\leftrightarrow& &&\mathbb{R} \\[4mm]
+        &1 &\leftrightarrow& &43&.17235759\ldots \\[2mm]
+        &2 &\leftrightarrow& &3&.19535351\ldots \\[2mm]
+        &3 &\leftrightarrow& &209&.00000000\ldots \\[2mm]
+        &4 &\leftrightarrow& &0&.12345678\ldots \\[2mm]
+        &\vdots &\leftrightarrow& &&\vdots \\[4mm]
+        &{\color{gmitred}?} &{\color{gmitred}\leftrightarrow}& &{\color{gmitred}0}&{\color{gmitred}.2015\ldots}
+      \end{align*}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[standout]
+  \begin{quote}
+    Computer programs are countable. \\[8mm]
+    Not all numbers are computable.
+  \end{quote}
+\end{frame} 
+
+
+\end{document}

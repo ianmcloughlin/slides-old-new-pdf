@@ -1,0 +1,127 @@
+\documentclass{beamer}
+
+\usepackage{iansslides}
+
+\begin{document}
+
+\section{Graph labellings}
+
+\begin{frame}{Example: vertex labelling}
+  \vspace{20mm}
+  \begin{center}
+    \begin{tikzpicture}[auto, on grid, node distance=10mm, initial text=, >=latex]
+      \node[] (s0)               {C};
+      \node[] (s1) [right of=s0] {C};
+      \node[] (s2) [right of=s1] {C};
+      \node[] (s3) [right of=s2] {C};
+      \node[] (s4) [right of=s3] {H};
+      \node[] (s5) [left of=s0]  {H};
+      \node[] (s6) [above of=s0]  {H};
+      \node[] (s7) [below of=s0]  {H};
+      \node[] (s8) [above of=s1]  {H};
+      \node[] (s9) [below of=s1]  {H};
+      \node[] (sA) [above of=s2]  {H};
+      \node[] (sB) [below of=s2]  {H};
+      \node[] (sC) [above of=s3]  {H};
+      \node[] (sD) [below of=s3]  {H};
+      \path[] 
+      (s0) edge [] node {} (s1)
+           edge [] node {} (s6)
+           edge [] node {} (s7)
+      (s1) edge [] node {} (s2)
+           edge [] node {} (s8)
+           edge [] node {} (s9)
+      (s2) edge [] node {} (s3)
+           edge [] node {} (sA)
+           edge [] node {} (sB)
+      (s3) edge [] node {} (s4)
+           edge [] node {} (sC)
+           edge [] node {} (sD)
+      (s5) edge [] node {} (s0);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Example: edge labelling}
+  \vspace{20mm}
+  \begin{center}
+    \begin{tikzpicture}[auto, on grid, node distance=2cm, initial text=, >=latex]
+      \node[state, initial]   (q_0)                {$q_0$}; 
+      \node[state, accepting] (q_1) [right of=q_0] {$q_1$};
+      \node[state]            (q_2) [right of=q_1] {$q_2$}; 
+      \path[->] 
+        (q_0) edge [loop above] node {$0$}   ()
+              edge []           node {$1$}   (q_1)
+        (q_1) edge [bend left]  node {$0$}   (q_2)
+              edge [loop above] node {$1$}   ()
+        (q_2) edge [bend left]  node {$0,1$} (q_1);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+
+% \begin{frame}[fragile]{Exercise: vertex colouring}
+%   Colour the vertices so that no two connected vertices have the same colour.
+%   What is the minimum number of colours you need?
+%   \begin{center}
+%     \begin{tikzpicture}[rotate=90]
+%       \GraphInit[vstyle=Hasse]
+%       \grPetersen[RA=3,RB=1.5]
+%     \end{tikzpicture}
+%   \end{center}
+% \end{frame}
+
+% \begin{frame}[fragile]{Example: vertex colouring}
+%   \begin{center}
+%     \begin{tikzpicture}[rotate=90]
+%       \GraphInit[vstyle=Hasse]
+%       \grPetersen[RA=3,RB=1.5]
+%       \AddVertexColor{red}{a0,b1,b2,a3}
+%       \AddVertexColor{green}{a1,b0,a4}
+%       \AddVertexColor{blue}{b4,b3,a2}
+%     \end{tikzpicture}
+%   \end{center}
+% \end{frame}
+
+
+\begin{frame}{Example: weighted graph}
+  \begin{center}
+    \begin{tikzpicture}[auto, on grid, node distance=24mm, initial text=, >=latex]
+      \node[rectangle, fill=gmitblue!40, draw=gray] (a)              {\footnotesize Athlone};
+      \node[rectangle, fill=gmitblue!40, draw=gray] (d) [right of=a] {\footnotesize Dublin};
+      \node[rectangle, fill=gmitblue!40, draw=gray] (g) [left of=a]  {\footnotesize Galway};
+      \node[rectangle, fill=gmitblue!40, draw=gray] (l) [below left of=g] {\footnotesize Limerick};
+      \node[rectangle, fill=gmitblue!40, draw=gray] (c) [below of=l] {\footnotesize Cork};
+      \node[rectangle, fill=gmitblue!40, draw=gray] (s) [above of=g] {\footnotesize Sligo};
+      \node[rectangle, fill=gmitblue!40, draw=gray] (b) [above of=d] {\footnotesize Belfast};
+      \node[rectangle, fill=gmitblue!40, draw=gray] (w) [below of=d] {\footnotesize Waterford};
+      \path[] 
+      (a) edge []           node {\footnotesize 85}  (d)
+          edge [above]      node {\footnotesize 59}  (g)
+      (d) edge []           node {\footnotesize 109} (b)
+          edge [left]       node {\footnotesize 115} (w)
+          edge []           node {\footnotesize 138} (l)
+          edge [above]      node {\footnotesize 156} (s)
+      (g) edge [above left] node {\footnotesize 75}  (l)
+          edge []           node {\footnotesize 115} (s)
+      (l) edge []           node {\footnotesize 90}  (c)
+      (c) edge []           node {\footnotesize 108} (w)
+      (s) edge []           node {\footnotesize 158} (b);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+
+
+\begin{frame}{Definitions}
+  \begin{description}
+    \setlength\itemsep{6mm}
+    \item[Vertex labelling:] map from $V$ to a set $L$.
+    \item[Edge labelling:] map from $E$ to a set $L$.
+    \item[Vertex colouring:] map from $V$ to a set $L$ so that no two adjacent elements of $V$ are mapped to the same element of $L$.
+    \item[Weighted graph:] edge labelled graph where $L$ is a set with an ordering.
+  \end{description}
+\end{frame}
+
+\end{document}

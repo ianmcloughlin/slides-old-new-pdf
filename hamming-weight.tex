@@ -1,0 +1,63 @@
+\documentclass{beamer}
+
+\usepackage{iansslides}
+
+\begin{document}
+
+\section{Hamming Weight}
+
+\begin{frame}{Hamming distance}
+  \begin{table}
+    \centering
+    \begin{tabular}{rcccccccc}
+      \toprule
+      $a$      & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 \\
+      $b$      & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 \\
+      \midrule
+      $\oplus$ & 1 & 1 & 0 & 0 & 1 & 0 & 1 & 0 \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+  \begin{itemize}
+    \item The Hamming distnace between two words of equal length is the number of places in which they differ.
+    \item The Hamming distance between $a$ and $b$ is 4.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Hamming weight}
+  \begin{table}
+    \centering
+    \begin{tabular}{rcccccccc}
+      \toprule
+      $a$      & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 \\
+      $\bar{0}$      & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+      \midrule
+      $\oplus$ & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+  \begin{itemize}
+    \item The Hamming of a word is the number of non-zero symbols in it.
+    \item The Hamming weight of $a$ is five.
+    \item This is equal to the Hamming distance between $a$ and the zero word.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Loop-up tables}
+  \begin{exampleblock}{Exercise}
+    Write an algorithm that counts the number of bits set in an integer.
+  \end{exampleblock}
+  
+  \pause
+  
+  You might try the following methods:
+  \begin{itemize}
+    \item Bit shifting
+    \item Look-up table
+    \item Kernighan's method
+    \item popcount
+  \end{itemize}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,69 @@
+\documentclass{beamer}
+
+% Most of the preamble is in here.
+\usepackage{iansslides}
+
+\begin{document}
+
+% Title frame.
+\section{Post correspondence problem}
+
+
+\begin{frame}{Example 1: Correspond}
+  \begin{table}
+    \begin{tabular}{cc}
+      [a, ab, bba] & [baa, aa, bb] \\
+    \end{tabular}
+  \end{table}
+  \vspace{3mm}
+  \begin{table}
+    \begin{tabular}{ccc}
+      \toprule
+      a   & ab & bba \\
+      baa & aa & bb  \\
+      {\scriptsize \color{gmitblue} 1} & {\scriptsize \color{gmitblue} 2} & {\scriptsize \color{gmitblue} 3}\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+  \vspace{4mm}
+  \begin{table}
+    \begin{tabular}{cccc}
+      \toprule
+      bba & ab & bba & a   \\
+      bb  & aa & bb  & baa \\
+      {\scriptsize \color{gmitblue} 3} & {\scriptsize \color{gmitblue} 2} & {\scriptsize \color{gmitblue} 3} & {\scriptsize \color{gmitblue} 1}\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+
+\begin{frame}{Example 2: Do not correspond}
+  \begin{table}
+    \begin{tabular}{cc}
+      [a, b, c] & [aa, bb, cc] \\
+    \end{tabular}
+  \end{table}
+  \vspace{3mm}
+  \begin{table}
+    \begin{tabular}{ccc}
+      \toprule
+      a  & b  & c \\
+      aa & bb & cc \\
+      {\scriptsize \color{gmitblue} 1} & {\scriptsize \color{gmitblue} 2} & {\scriptsize \color{gmitblue} 3}\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+  \vspace{4mm}
+  \begin{table}
+    \begin{tabular}{cccc}
+      \toprule
+      c  & b  & c  & a  \\
+      cc & bb & cc & aa \\
+      {\scriptsize \color{gmitblue} 3} & {\scriptsize \color{gmitblue} 2} & {\scriptsize \color{gmitblue} 3} & {\scriptsize \color{gmitblue} 1}\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\end{document}

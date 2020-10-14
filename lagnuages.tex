@@ -1,0 +1,211 @@
+\documentclass{beamer}
+
+\usepackage{iansslides}
+
+\begin{document}
+
+\section{Languages}
+
+\begin{frame}{Alphabets and strings}
+
+  \vspace{2mm}
+
+  Start with a set, call it an alphabet.
+
+  \redmath{A = \{ 0, 1 \}}
+
+  \vspace{2mm}
+
+  Call tuples over the alphabet strings:
+
+  \redmath{s = (1, 0, 1, 0, 1, 1) = 101011}
+
+  \vspace{2mm}
+
+  Don't forget the empty tuple/string:
+
+  \redmath{\epsilon = ()}
+
+  \vspace{2mm}
+
+  Strings can be concatenated, denoted by $.$ or not:
+
+  \redmath{s.t = st = 101011.001 = 101011001}
+
+  \redmath{t.s = ts = 001.101011 = 001101011}
+
+\end{frame}
+
+
+\begin{frame}{Set of all strings}
+
+  \vspace{2mm}
+
+  Start with an alphabet.
+
+  \redmath{A = \{ 0, 1 \}}
+
+  \vspace{2mm}
+
+  Write $A^i$ for the set of all tuples over $A$ of length $i$ where $i \in \mathbb{N}_0$:
+
+  \redmath{A^2 = \{ 00, 01, 10, 11 \}}
+
+  \vspace{2mm}
+
+  Don't forget the empty tuple/string:
+
+  \redmath{A^0 = \{ \epsilon \}}
+
+  \vspace{2mm}
+
+  The set of all strings over $A$ is called the \textcolor{gmitblue}{Kleene star ($*$)} of $A$:
+
+  \redmath{A^* = \bigcup_{i \in \mathbb{N}_0} A^i}
+
+\end{frame}
+
+
+\begin{frame}{Languages}
+
+  \vspace{2mm}
+
+  Each subset of $A^*$ is called a language over $A$:
+
+  \redmath{L \subseteq A^*}
+
+  \vspace{2mm}
+
+  Note the empty set is a language:
+
+  \redmath{\{ \} \subseteq A^*}
+
+  \vspace{2mm}
+
+  And so is $A^*$ itself:
+
+  \redmath{A^* \subseteq A^*}
+
+  \vspace{2mm}
+
+  We are typically interested in the \textcolor{gmitblue}{proper} subsets of $A^*$:
+
+  \redmath{L \subseteq A^* \qquad \textrm{where} \qquad L \neq \{ \}, A^* }
+
+\end{frame}
+
+
+\begin{frame}{Union of Languages}
+
+  \vspace{2mm}
+
+  Suppose we've two languages over the same alphabet:
+
+  \redmath{L_1 = \{ 000, 111 \} \subseteq \{ 0, 1 \}^*}
+
+  
+  \redmath{L_2 = \{ 101, 010, 111 \} \subseteq \{ 0, 1 \}^*}
+
+  \vspace{2mm}
+
+  The union of $L_1$ and $L_2$ is the set containing the elements of both:
+
+  \redmath{L_1 \cup L_2 = \{ 000, 010, 101, 111 \}}
+
+  \vspace{2mm}
+
+  Remember that sets don't keep count of elements.
+
+\end{frame}
+
+\begin{frame}{Intersection of Languages}
+
+  \vspace{2mm}
+
+  Suppose we've two languages over the same alphabet:
+
+  \redmath{L_1 = \{ 000, 111 \} \subseteq \{ 0, 1 \}^*}
+
+  
+  \redmath{L_2 = \{ 101, 010, 111 \} \subseteq \{ 0, 1 \}^*}
+
+  \vspace{2mm}
+
+  The intersection of $L_1$ and $L_2$ is the set containing the elements in both:
+
+  \redmath{L_1 \cap L_2 = \{ 111 \}}
+
+  \vspace{2mm}
+
+  Two languages can have an empty intersection.
+
+\end{frame}
+
+\begin{frame}{Concatenation of Languages}
+
+  \vspace{2mm}
+
+  Suppose we've two languages over the same alphabet:
+
+  \redmath{L_1 = \{ 000, 111 \} \subseteq \{ 0, 1 \}^*}
+
+  
+  \redmath{L_2 = \{ 101, 010, 111 \} \subseteq \{ 0, 1 \}^*}
+
+  \vspace{2mm}
+
+  The concatenation of $L_1$ and $L_2$ is the set containing the concatenation of each of the elements of the first language with each of the elements of the second:
+
+  \redmath{L_1 L_2 = \{ 000101, 000010, 000111, 111101, 111010, 111111 \}}
+
+  \vspace{2mm}
+
+  If $\epsilon$ is in either language then the elements of the other are in the concatenation.
+
+\end{frame}
+
+
+\begin{frame}{Kleene star of a language}
+
+
+  \vspace{2mm}
+
+  Write $L^2$ for the concatenation of $L$ with $L$.
+
+  \redmath{L^2 = \{ 000, 111 \}^2 \subseteq \{ 000000, 000111, 111000, 111111 \}^*}
+
+  \vspace{2mm}
+
+  Set $L^0$ and $L^1$ as follows:
+
+  \redmath{L^0 = \{ \}, \qquad L^1 = L }
+
+  \vspace{2mm}
+
+  Then set:
+
+  \redmath{L^i = L^{i-1} L \qquad \forall i \in \mathbb{N}, \   i > 2}
+
+  \vspace{2mm}
+
+  Then the Kleene star (*) of the language $L$ is:
+
+  \redmath{L^* = \bigcup_{i \in \mathbb{N}_0} L^i = \{ \epsilon, 000, 111, 000000, 000111, \ldots \}}
+
+\end{frame}
+
+
+\begin{frame}{Files types as languages}
+  \begin{itemize}
+    \setlength\itemsep{3mm}
+    \item Computer files are stored as 0's and 1's.
+    \item A file is a string over $\{ 0, 1 \}$
+    \item File types are languages over $\{ 0, 1 \}$.
+    \item Set of all valid pdf files is a language over $\{ 0,1 \}$.
+    \item As is the set of valid docx files.
+    \item A computer program that converts pdf's to docx's maps one subset of $A^*$ to another.
+    \item Executable files are also strings over $\{ 0, 1 \}$.
+  \end{itemize}
+\end{frame}
+
+\end{document} 

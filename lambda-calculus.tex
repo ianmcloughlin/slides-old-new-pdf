@@ -1,0 +1,40 @@
+\documentclass{beamer}
+
+% Most of the preamble is in here.
+\usepackage{iansslides}
+
+\begin{document}
+
+% Title frame.
+\section{Lambda calculus}
+
+% A frame with Tikz.
+\begin{frame}{Lambda terms}
+
+  { \color{gmitred}
+    \begin{center}
+      {\Large  $\Lambda$ is the set of $\lambda$ terms.} \\[3mm]
+      $V$ is an infinite set of \emph{variables}.
+    \end{center}
+  }
+
+  \vspace{-6mm}
+
+  \[ x \in V \Rightarrow x \in \Lambda \]
+  \[ M, N \in \Lambda \Rightarrow (M \  N) \in \Lambda \]
+  \[ M \in \Lambda, x \in V \Rightarrow (\lambda x.M ) \in \Lambda \]
+
+  { \color{gmitblue}
+    \begin{center}
+      \begin{table}
+        \begin{tabular}{rl}
+          var $::=$ & `v' $\mid$ var`$'$' \\[2mm]
+          $\lambda$-term $::=$ & var  $\mid$ `('$\lambda$-term$\lambda$-term`)'  $\mid$ `($\lambda$'var.$\lambda$-term`)'
+        \end{tabular}
+      \end{table}
+    \end{center}
+  }
+
+\end{frame}
+
+\end{document} 

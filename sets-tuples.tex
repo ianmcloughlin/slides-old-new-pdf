@@ -1,0 +1,81 @@
+\documentclass{beamer}
+
+\usepackage{iansslides}
+
+\begin{document}
+
+\section{Sets and tuples}
+
+\begin{frame}{Regular expressions}
+  
+  \redmath{(0.0|1.1).(0.1)^*.(0.0|1.1)}
+
+  \begin{itemize}
+    \item Regular expressions are strings that represent patterns of text.
+    \item The strings can contain special characters.
+    \item Brackets can be used to group characters together.
+    \item Regular expressions are used to search other strings for patterns.
+  \end{itemize}
+  \begin{alertblock}{Special characters}
+    \begin{description}[abbb]
+      \item[$.$] means \emph{concatenate}. So, $a.b$ means an $a$ followed by a $b$.
+      \item[$|$] means \emph{or}. So, $a|b$ means an $a$ or a $b$.
+      \item[$*$] means \emph{zero or more times}. So, $a^*$ means zero or more $a$'s.
+    \end{description}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Examples of regular expressions}
+  \begin{description}[aaaaaaaa]
+    \setlength\itemsep{5mm}
+    \item[$a.b.c$] -- a single $a$ followed by a single $b$ followed by a single $c$. 
+    \item[$a.b.c^*$] -- an $a$ followed by a $b$ followed by zero or more $c$'s.
+    \item[$a|b.c$] -- an $a$, or a $b$ followed by a $c$.
+    \item[$(a|b).c$] -- an $a$ or a $b$, followed by a $c$.
+    \item[$0.0.(0|1)^*$] -- all strings of $0$'s and $1$' that begin with two zeros.
+    \item[$1^*$] -- any number of $1$'s (including empty string).
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{Precedence}
+  \begin{enumerate}
+    \setlength\itemsep{5mm}
+    \item Always apply $^*$ first.
+    \item Apply $.$ after $^*$ but before $|$.
+    \item Apply $|$ last.
+    \item Treat bracketed groups as individual characters.
+  \end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Languages of regular expressions}
+  This is a list of regular expressions over an alphabet $A$ and the languages they define.
+  \begin{description}[aa]
+    \setlength\itemsep{4mm}
+    \item[$\emptyset$] -- the empty language ($\{\}$).
+    \item[$\epsilon$] -- the language containing the empty string ($\{\epsilon\})$.
+    \item[$a$] -- the language containing any symbol $a$ from $A$ ($\{a\}$).
+    \item[$r.s$] -- the concatenation of the languages defined by regular expressions $r$ and $s$.
+    \item[$r|s$] -- the union of the languages of regular expressions $r$ and $s$.
+    \item[$r^*$] -- the star of the language defined by regular expression $r$.
+  \end{description}
+\end{frame}
+
+
+\begin{frame}{Infix and postfix}
+  It is sometimes convenient to re-write expressions in postfix.
+  This applies to lots of different expressions, not just regular expressions.
+  \begin{exampleblock}{Example}
+    Convert an infix mathematical expression (left) to postfix (right):
+    $$(3+4) \times 5 \qquad \rightarrow \qquad 3 \ 4 \  + 5 \  \times$$
+  \end{exampleblock}
+  \begin{exampleblock}{Example}
+    Converting an infix regular expression (left) to postfix (right):
+    $$a.(b.b)^*.a \qquad  \rightarrow  \qquad  abb.^*.a.$$
+    Note we often omit the $.$ in infix notation: ``$a(bb)^*a$'' but can't in postfix.
+    However, the brackets aren't needed in postfix.
+  \end{exampleblock}
+\end{frame}
+
+\end{document}

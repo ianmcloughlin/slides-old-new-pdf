@@ -1,0 +1,89 @@
+\documentclass{beamer}
+
+\usepackage{iansslides}
+
+\begin{document}
+
+\section{Primes}
+
+\begin{frame}{PRIMES}
+  \begin{definition}
+    $$ PRIMES = \{ 2, 3, 5, 7, 11, 13, ... \} $$
+  \end{definition}
+  \begin{description}
+    \item[PRIMES] is the set of all primes numbers.
+    \item[Can] a Turing Machine be designed to decide PRIMES? (Yes)
+    \item[Some] people say PRIMES is the decision problem for the set of primes.
+    \item[Can] it do it in polynomial time? (Yes)
+    \item[Is] PRIMES in P? (Yes, 2002)
+  \end{description}
+  \citeurl{www.cse.iitk.ac.in/users/manindra/algebra/primality\_v6.pdf}
+\end{frame}
+
+\begin{frame}{Modern cryptography}
+  \begin{alertblock}{Modern asymmetric key cryptography is based on prime numbers}
+    It depends on two facts:
+    \begin{itemize}
+      \item It's easy to verify primes (P).
+      \item It's hard to decompose a composite number into primes (Not known to be P).
+    \end{itemize}
+  \end{alertblock}
+  \begin{alertblock}{Generating versus verifying}
+    Note that it's not necessarily easy to generate prime numbers.
+    We know that verifying a number is prime can be done in polynomial time.
+    That doesn't mean that we can generate prime numbers in polynomial time.
+    You must start with the prime, and then ask the question.
+  \end{alertblock}
+
+\end{frame}
+
+\begin{frame}[fragile]{Brute force prime checking}
+  \begin{alertblock}{Is n a prime?}
+    \begin{minted}{c}
+function is_prime(n) {
+  for (var i = 2; i < n; i++) {
+    if (n % i == 0)
+      return false;
+  }
+  return true;
+}
+    \end{minted}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}[fragile]{More efficient prime checking}
+  \begin{itemize}
+    \item Suppose $a \times b = n$.
+    \item Then $a < b$, $a > b$ or $a = b$.
+    \item No matter what, $a \le \sqrt{n}$ and/or $b \le \sqrt{n}$.
+    \item So only loop to $\sqrt{n}$.
+    \item This still isn't that efficient.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Slightly more efficient}
+  \begin{alertblock}{Is n a prime?}
+    \begin{minted}{c}
+function is_prime(n) {
+  for (var i = 2; i < Math.sqrt(n); i++) {
+    if (n % i == 0)
+      return false;
+  }
+  return true;
+}
+    \end{minted}
+  \end{alertblock}
+\end{frame}
+
+%\begin{frame}[fragile]{AKS prime checking (2002)}
+%  \begin{enumerate}
+%    \item If $n = a^b$ where $a,b \in \mathbb{N}^+$, output composite.
+%    \item Find the smallest $r$ such that $ord_r(n) > (log_2 n)^2$.
+%    \item No matter what, $a \le \sqrt{n}$ and/or $b \le \sqrt{n}$.
+%    \item So only loop to $\sqrt{n}$.
+%    \item This still isn't that efficient.
+%  \end{enumerate}
+%  \citeurl{wikipedia.org/wiki/AKS\_primality\_test}
+%\end{frame}
+
+\end{document}

@@ -1,0 +1,99 @@
+\documentclass{beamer}
+
+\usepackage{iansslides}
+
+\begin{document}
+
+\section{Hash functions}
+
+\begin{frame}{Binary functions}
+  \redmath{f:\{0,1\}^* \rightarrow \{0,1\}^*}
+
+  \begin{itemize}
+    \item $f$ is a function that converts strings over $\{0,1\}$ into other strings over $\{0,1\}$.
+    \item $f$ can be viewed as a map, a subset of $\{0,1\}^* \times \{0,1\}^*$ where no two first elements are equal and every element in $\{0,1\}^*$ is a first element.
+    \item For example, $(0110,11111101) \in \{0,1\}^* \times \{0,1\}^*$.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Hash functions}
+  \redmath{f:\{0,1\}^* \rightarrow \{0,1\}^n}
+
+  \begin{itemize}
+    \item A (binary) hash function is a function where the output is of fixed size.
+    \item In the example above, $\{0,1\}^n$ has size $2^n$.
+    \item Any set of fixed size will do, but we usually use $\{0,1\}^n$ for some $n \in \mathbb{N}$.
+    \item For example, we could use $\{0, 1, 00, 01, 10, 11\}$ instead.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Using Hexadecimal}
+  The benefit of using hex is that it saves space while being easy to convert to.
+  Every nibble becomes a hex symbol.
+  \begin{table}
+    \centering
+    \begin{tabular}{rl@{\hspace*{8mm}}rl@{\hspace*{8mm}}rl@{\hspace*{8mm}}rl}
+      \toprule
+      0 & 0000 & 1 & 0001 & 2 & 0010 & 3 & 0011 \\
+      4 & 0100 & 5 & 0101 & 6 & 0110 & 7 & 0111 \\
+      8 & 1000 & 9 & 1001 & A & 1010 & B & 1011 \\
+      C & 1100 & D & 1101 & E & 1110 & F & 1111 \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \begin{exampleblock}{Example}
+    \begin{table}
+      \centering
+      \begin{tabular}{cccccccc}
+        \toprule
+          0100 & 0111 & 0100 & 1101 & 0100 & 1001 & 0101 & 0100 \\
+          4    & 7    & 4    & D    & 4    & 9    & 5    & 4     \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+    Try 010010010110000101101110 in your own time.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Common hash functions}
+  \begin{exampleblock}{Input string}
+    {\footnotesize Galway-Mayo Institute of Technology, Dublin Road, Galway, H91 T8NW}
+  \end{exampleblock}
+  \begin{exampleblock}{Outputs}
+    \begin{table}
+      \centering
+      \begin{tabular}{rl}
+        \toprule
+          \texttt{MD5}    & {\tiny 4EC47B38AE21FD11A5E4993995097861} \\
+          \texttt{SHA1}   & {\tiny 67481B1FF7E145067C12B7C6C5E681CD7EFDEDD6} \\
+          \texttt{SHA256} & {\tiny BE9863B550CC931D220E7EB08B7AFE44B70ED467A5015F34ED9DECA1B84F7A2D} \\
+          \texttt{CRC32}  & {\tiny FE7E4F25} \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+  \end{exampleblock}
+  \begin{exampleblock}{Try yourself}
+    Try ``Colorless green ideas sleep furiously'' and the empty string.
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Properties}
+  \begin{description}
+    \setlength\itemsep{6mm}
+    \item[Uniform:] outputs should have the same probability as each other.
+    \item[Prefect:] every input gives a different output.
+    \item[Minimal:] outputs form a coninuous range of bit strings.
+    \item[Cryptographic:] difficult to calculate the input from the output.
+    \item[Deterministic:] always the same output for a given input.
+  \end{description}
+\end{frame}
+
+\begin{frame}{Loop-up tables}
+  \begin{exampleblock}{Exercise}
+    Write an algorithm that counts the number of bits set in an integer.
+  \end{exampleblock}
+\end{frame}
+
+\end{document}

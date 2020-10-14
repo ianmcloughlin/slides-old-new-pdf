@@ -1,0 +1,96 @@
+\documentclass{beamer}
+
+% Most of the preamble is in here.
+\usepackage{iansslides}
+
+\begin{document}
+
+
+\section{Learning}
+
+
+\begin{frame}{Memorize these symbols}
+  \vspace{8mm}
+  \centering
+  \begin{adjustbox}{width=0.8\columnwidth, keepaspectratio}
+    \begin{tikzpicture}
+      \draw[thick,                color=gmitblue] (0,0) -- (1,0) -- (1,1);
+      \draw[thick,shift={(0,-2)} ,color=gmitblue] (0,1) -- (0,0) -- (1,0) -- (1,1);
+      \draw[thick,shift={(0,-4)} ,color=gmitblue] (0,1) -- (0,0) -- (1,0);
+      \draw[thick,shift={(0,-6)} ,color=gmitblue] (0,1) -- (1,1) -- (1,0) -- (0,0);
+      \draw[thick,shift={(4, 0)} ,color=gmitblue] (0,0) -- (0,1) -- (1,1) -- (1,0) -- (0,0);
+      \draw[thick,shift={(4,-2)} ,color=gmitblue] (1,1) -- (0,1) -- (0,0) -- (1,0);
+      \draw[thick,shift={(4,-4)} ,color=gmitblue] (0,1) -- (1,1) -- (1,0);
+      \draw[thick,shift={(4,-6)} ,color=gmitblue] (0,0) -- (0,1) -- (1,1) -- (1,0);
+      \draw[thick,shift={(8, 0)} ,color=gmitblue] (0,0) -- (0,1) -- (1,1);
+      \node at (-0.5, 0.5) {\Large $1.$};
+      \node at (-0.5,-1.5) {\Large $2.$};
+      \node at (-0.5,-3.5) {\Large $3.$};
+      \node at (-0.5,-5.5) {\Large $4.$};
+      \node at ( 3.5, 0.5) {\Large $5.$};
+      \node at ( 3.5,-1.5) {\Large $6.$};
+      \node at ( 3.5,-3.5) {\Large $7.$};
+      \node at ( 3.5,-5.5) {\Large $8.$};
+      \node at ( 7.5, 0.5) {\Large $9.$};
+    \end{tikzpicture}
+  \end{adjustbox}
+\end{frame}
+
+
+\begin{frame}[standout]
+  \begin{quote}
+    Write down the symbols corresponding to the number 314,159.
+  \end{quote}
+\end{frame}
+
+
+\begin{frame}
+  \vspace{8mm}
+  \centering
+  %\begin{adjustbox}{width=0.8\columnwidth, keepaspectratio}
+    \begin{tikzpicture}
+      \draw[thick, color=gmitblue] (-2, 0) -- (4,0);
+      \draw[thick, color=gmitblue] (-2, 2) -- (4,2);
+      \draw[thick, color=gmitblue] ( 0,-2) -- (0,4);
+      \draw[thick, color=gmitblue] ( 2,-2) -- (2,4);
+      \node at (-1, 3) {\Large $1$};
+      \node at ( 1, 3) {\Large $2$};
+      \node at ( 3, 3) {\Large $3$};
+      \node at (-1, 1) {\Large $4$};
+      \node at ( 1, 1) {\Large $5$};
+      \node at ( 3, 1) {\Large $6$};
+      \node at (-1,-1) {\Large $7$};
+      \node at ( 1,-1) {\Large $8$};
+      \node at ( 3,-1) {\Large $9$};
+    \end{tikzpicture}
+  %\end{adjustbox}
+\end{frame}
+
+
+\begin{frame}[standout]
+  \begin{quote}
+    Knowledge is constructed as a result of the learner's activity. \\[8mm]
+  \end{quote}
+
+  {\scriptsize -- Teaching Teaching \& Understanding Understanding by Claus Brabrand}
+
+\end{frame}
+
+
+\begin{frame}{Zone of proximal development}
+  \vspace{4mm}
+  \centering
+  \begin{adjustbox}{width=0.7\columnwidth, keepaspectratio}
+    \begin{tikzpicture}
+      \draw[fill=gmitgrey!50] (0,0) circle (6);
+      \draw[fill=gmitred!50] (0,0) circle (4);
+      \draw[fill=gmitblue!50] (0,0) circle (3);
+      \node at (0,0) {\Large Know};
+      \node at (0,-3.5) {\Large Learn};
+      \node at (0,-5) {\Large Difficult};
+    \end{tikzpicture}
+  \end{adjustbox}
+\end{frame} 
+
+
+\end{document}
